@@ -12,6 +12,7 @@ class myUser(AbstractUser):
     REQUIRED_FIELDS=[]
     USERNAME_FIELD = 'email'
 
+#For participant
 class Participant(models.Model):  
     name=models.CharField(max_length=200, null=True)
     email=models.EmailField( null=True)
