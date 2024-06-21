@@ -1,0 +1,6 @@
+<form method="POST">
+    {%csrf_token%}
+<p>Are you sure want to delete <b>"{{meetup}}"</b></p>
+<a href="{% url 'meetups' %}">Go Back</a>
+<button type="submit">Delete</button>
+</form>

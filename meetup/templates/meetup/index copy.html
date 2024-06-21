@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if request.user.is_authenticated%}
+    <p>Welcome! {{request.user.username}}</p>
+
+    <form method="POST" action="{% url 'logout'%}">
+    {%csrf_token%}
+    <button type="submit">Logout</button>
+
+
+    </form><br>
+    <a href="{%url 'meetup-create' %}">Add Meetup</a> |
+    <a href="{%url 'user-meetup'%}">My Meetups</a> |
+    <a href="{%url 'user-speaker'%}">My Speakers</a> |
+    <a href="{%url 'user-profile' request.user.id%}">Profile</a> |
+    {%else%}
+<a href="{%url 'login'%}">Login</a> | 
+<a href="{%url 'register'%}">Register</a>
+    {%endif%}
+    <hr>
+    <form method="GET" action="">
+        <input type="search" name="q" placeholder="search...."/>
+        <button type="submit">search</button>     
+      
+
+    </form><a href="{%url 'meetups'%}">Reset</a>
+    <h1>All  Meetups  </h1>
+    
+<table border="1">
+    <tr>
+        <th>Meetup Id</th>
+        <th>Meetup Title</th>
+        <th>Organizer Email</th>
+        <th>View</th>
+       
+    </tr>
+{% for meetup in meetups%}
+<tr>
+    <td>{{meetup.id}}</td>
+    <td>{{meetup.title}}</td>
+    <td>{{meetup.organizer_email}}</td>
+
+    <td><a href="{% url 'meetup-details' meetup.slug %}" target="_new">View</a></td>
+  
+</tr>
+{%endfor%}
+</table>
+
+<span>Count:{{count}} {%if count > 1 %}
+meetups
+{%else%}
+meetup
+{%endif%}
+</span>
+
+
+</body>
+</html>

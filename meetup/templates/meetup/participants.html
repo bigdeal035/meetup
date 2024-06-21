@@ -1,0 +1,93 @@
+
+
+
+{% extends 'meetup/main.html'%}
+{%load static%}
+{%block title%}create meetup{%endblock%}
+
+{%block service%}{%endblock%}
+
+{%block project%}{%endblock%}
+{%block meetup%}{%endblock%}
+{%block team%}{%endblock%}
+{%block slider%}
+<div class="container-fluid page-header py-5">
+    <div class="container text-center py-5">
+        <h1 class="display-2 text-white mb-4 animated slideInDown">user speakers</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="{%url 'meetups'%}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">user speakers</a></li>
+                <li class="breadcrumb-item" aria-current="page"></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+{%endblock%}
+{%block about%}
+
+<div class="container-fluid  ">
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-md-4 m-auto">
+                <h3>Participant for "{{meetup.title}}"</h3>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 m-auto">
+                <div class="input-group">
+                    <form method="GET" action="">
+                        <input type="search" name="q" class='form-control' placeholder="search...."/>
+                        <button type="submit" class="btn btn-secondary text-white" >search</button>     
+                      
+                    
+                    </form><a href="{%url 'user-speaker' %}" class="btn btn-secondary text-white" >Reset</a>
+                </div>
+               
+                <h1>All participants</h1>
+                
+                <table class="table table-bordered table-striped text-center rounded">
+                    <tr>
+                        <th> Id</th>
+                   
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Send Email</th>
+                       
+                        
+                    </tr>
+                    {% for participant in participants%}
+                    <tr>
+                    <td>{{participant.id}}</td>
+                    <td>{{participant.name}}</td>
+                    <td>{{participant.email}}</td>
+                    <td>{{participant.phone}}</td>
+                    <td><a href="mailto:{{participant.email}}"  target="_new">Send</a></td>
+                   
+                    </tr>
+                    {%endfor%}
+                </table>
+                
+                <span>Count:{{counts}} {%if counts > 1 %}
+                    participants
+                    {%else%}
+                    participants
+                    {%endif%}
+                </span>
+                
+              
+            </div>
+        </div>
+      
+    </div>
+</div>
+
+{%endblock%}
+
+
+

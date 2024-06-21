@@ -1,0 +1,57 @@
+
+{% extends 'meetup/main.html'%}
+{%load static%}
+{%block title%}create meetup{%endblock%}
+
+{%block service%}{%endblock%}
+
+{%block project%}{%endblock%}
+{%block meetup%}{%endblock%}
+{%block team%}{%endblock%}
+{%block slider%}
+<div class="container-fluid page-header py-5">
+    <div class="container text-center py-5">
+        <h1 class="display-2 text-white mb-4 animated slideInDown">Login</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="{%url 'meetups'%}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Login</a></li>
+                <li class="breadcrumb-item" aria-current="page"></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+{%endblock%}
+{%block about%}
+
+<div class="container-fluid  ">
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-md-4 m-auto">
+                <h3>Login into your account</h3>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 m-auto">
+                <form method="POST">
+                    {%csrf_token%}
+                    <label class="label-control">Email: </label>
+                    <input type="email" name="email" class="form-control my-2" required placeholder="Enter your email"/>
+                    
+                    <label class="label-control">Password: </label>
+                    <input type="password" name="password"  class="form-control my-2" required placeholder="Enter your password"/>
+                    
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+              
+            </div>
+        </div>
+      
+    </div>
+</div>
+
+{%endblock%}
