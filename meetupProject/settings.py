@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import environs
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,7 @@ SECRET_KEY = 'django-insecure-^s@61)ebah75xj3)+n+)v^63-t9v+()@bi0f%1-0&vm&)(&r75
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -48,6 +50,8 @@ LOGIN_URL='login'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,14 +85,29 @@ WSGI_APPLICATION = 'meetupProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'ENGINE':'django.db.backends.postgresql_psycopg2',
+    'NAME':os.environ.get('DATABASE_NAME'),
+    'USER':os.environ.get('DATABASE_USER'),
+    'PASSWORD':os.environ.get('DATABASE_PASSWORD'),
+    'HOST':os.environ.get('DATABASE_HOST'),
+    'PORT':os.environ.get('DATABASE_PORT'),
+    'ATOMIC_REQUESTS': True
     }
 }
-
-
+# DATABASES = {
+#     'default':'postgres://avnadmin:AVNS_qeKe2CUnuuTpJPH4Sb0@pg-37506962-bigdeal035-11a7.l.aivencloud.com:11845/defaultdb?sslmode=require' 
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

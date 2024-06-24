@@ -67,7 +67,7 @@
                 </div>
                 <div class="d-flex flex-column pe-4 border-end">
                     {% if request.user.is_authenticated%}
-                    <span class="text-white-50">Welcome! {{request.user}}</span>
+                    <span class="text-white-50">Welcome! {{request.user.username}}</span>
                     {%endif%}
                     <span class="text-secondary">Call: + 0123 456 7890</span>
                 </div>
