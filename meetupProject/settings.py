@@ -105,9 +105,7 @@ DATABASES = {
     'ATOMIC_REQUESTS': True
     }
 }
-# DATABASES = {
-#     'default':'postgres://avnadmin:AVNS_qeKe2CUnuuTpJPH4Sb0@pg-37506962-bigdeal035-11a7.l.aivencloud.com:11845/defaultdb?sslmode=require' 
-# }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
